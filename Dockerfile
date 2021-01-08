@@ -1,21 +1,21 @@
 #name of container: docker-cacti
 #versison of container: 0.6.4
-FROM quantumobject/docker-baseimage:18.04
+FROM k0hax/docker-baseimage:18.04
 MAINTAINER Angel Rodriguez  "angel@quantumobject.com"
 
-ENV TZ America/New_York
+ENV TZ Etc/UTC
 
 # Update the container
 #Installation of nesesary package/software for this containers...
 RUN apt-get update && echo $TZ > /etc/timezone && DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends mariadb-server mariadb-client php build-essential automake \
                                                             apache2 snmp libapache2-mod-php libssl-dev vim \
                                                             rrdtool librrds-perl php-mysql php-pear \
-                                                            php-common php-json php-gettext libtool \
-                                                            php-pspell php-recode php-tidy php-xmlrpc \
+                                                            php-common php-json libtool \
+                                                            php-pspell php-tidy php-xmlrpc \
                                                             php-xml php-ldap php-mbstring php-intl \
                                                             php-gd php-snmp php-gmp php-curl php-net-socket\
                                                             libmysqlclient-dev libsnmp-dev dos2unix help2man git \
-                                                            snmpd python-netsnmp libnet-snmp-perl snmp-mibs-downloader \
+                                                            snmpd libnet-snmp-perl snmp-mibs-downloader \
                                                             iputils-ping autoconf unzip \
                     && cd /opt/ \
                     && wget https://www.cacti.net/downloads/cacti-latest.tar.gz \
